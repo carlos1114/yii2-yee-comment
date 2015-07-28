@@ -11,7 +11,7 @@ class m150727_175300_add_comments_menu_links extends Migration
 
         $this->insert('menu_link',
             ['id' => 'comment', 'menu_id' => 'admin-main-menu', 'label' => 'Comments',
-            'image' => 'comment', 'order' => 8]);
+            'link' => '/comment', 'image' => 'comment', 'order' => 8]);
     }
 
     public function down()

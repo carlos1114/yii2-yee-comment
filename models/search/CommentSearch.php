@@ -2,6 +2,7 @@
 
 namespace yeesoft\comment\models\search;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use yeesoft\comments\models\Comment;
@@ -11,14 +12,18 @@ use yeesoft\comments\models\Comment;
  */
 class CommentSearch extends Comment
 {
+    public $created_at_operand;
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['id', 'model_id', 'user_id', 'parent_id', 'status', 'created_at', 'updated_at'], 'integer'],
-            [['model', 'username', 'email', 'content', 'user_ip'], 'safe'],
+            [['id', 'model_id', 'user_id', 'parent_id', 'status', 'updated_at'],
+                'integer'],
+            [['model', 'username', 'email', 'content', 'user_ip', 'created_at', 'created_at_operand'],
+                'safe'],
         ];
     }
 
@@ -44,6 +49,15 @@ class CommentSearch extends Comment
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pageSize' => Yii::$app->request->cookies->getValue('_grid_page_size',
+                    20),
+            ],
+            'sort' => [
+                'defaultOrder' => [
+                    'id' => SORT_DESC,
+                ],
+            ],
         ]);
 
         $this->load($params);
@@ -54,15 +68,32 @@ class CommentSearch extends Comment
             return $dataProvider;
         }
 
+        $query->andFilterWhere(['status' => ($this->status !== NULL) ? $this->status : 1]);
+
         $query->andFilterWhere([
             'id' => $this->id,
             'model_id' => $this->model_id,
             'user_id' => $this->user_id,
             'parent_id' => $this->parent_id,
-            'status' => $this->status,
-            'created_at' => $this->created_at,
+            //'status' => $this->status,
             'updated_at' => $this->updated_at,
         ]);
+
+        switch ($this->created_at_operand) {
+            case '=':
+                $query->andFilterWhere(['>=', 'created_at', strtotime($this->created_at)]);
+                $query->andFilterWhere(['<=', 'created_at', strtotime($this->created_at.' 23:59:59')]);
+                break;
+            case '>':
+                $query->andFilterWhere(['>', 'created_at', strtotime($this->created_at.' 23:59:59')]);
+                break;
+            case '<':
+                $query->andFilterWhere(['<', 'created_at', strtotime($this->created_at)]);
+                break;
+            default:
+                break;
+        }
+
 
         $query->andFilterWhere(['like', 'model', $this->model])
             ->andFilterWhere(['like', 'username', $this->username])

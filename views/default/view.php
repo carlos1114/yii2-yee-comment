@@ -45,21 +45,45 @@ $this->params['breadcrumbs'][] = $this->title;
                 'model' => $model,
                 'attributes' => [
                     'id',
-                    'model',
-                    'model_id',
-                    'user_id',
-                    'username',
+                    [
+                        'attribute' => 'model',
+                        'value' => $model->model.
+                        (($model->model_id) ? '::'.$model->model_id : ''),
+                    ],
+                    [
+                        'attribute' => 'username',
+                        'value' => $model->getAuthor(),
+                    ],
                     'email:email',
-                    'parent_id',
-                    'status',
-                    'created_at',
-                    'updated_at',
-                    'content:ntext',
+                    [
+                        'attribute' => 'parent_id',
+                        'value' => ($model->parent_id) ? Html::a('comment_'.$model->parent_id,
+                                ['view', 'id' => $model->parent_id]) : NULL,
+                        'format' => 'raw'
+                    ],
+                    [
+                        'attribute' => 'status',
+                        'value' => $model->getStatusList()[$model->status],
+                    ],
+                    [
+                        'attribute' => 'created_at',
+                        'value' => $model->createdDateTime,
+                    ],
+                    [
+                        'attribute' => 'updated_at',
+                        'value' => $model->updatedDateTime,
+                    ],
                     'user_ip',
                 ],
             ])
             ?>
 
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <?= $model->content ?>
         </div>
     </div>
 

@@ -11,7 +11,7 @@ use yeesoft\usermanagement\components\GhostHtml;
 
 <div class="comment-form">
 
-    <?php 
+    <?php
     $form = ActiveForm::begin([
             'id' => 'comment-form',
             'validateOnBlur' => false,
@@ -23,12 +23,6 @@ use yeesoft\usermanagement\components\GhostHtml;
 
             <div class="panel panel-default">
                 <div class="panel-body">
-                    
-                    <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
-
-                    <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
-
-                    <?= $form->field($model, 'parent_id')->textInput() ?>
 
                     <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
 
@@ -42,25 +36,51 @@ use yeesoft\usermanagement\components\GhostHtml;
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="record-info">
+
                         <div class="form-group clearfix">
-                            <label class="control-label" style="float: left; padding-right: 5px;"><?=  $model->attributeLabels()['id'] ?>: </label>
-                            <span><?=  $model->id ?></span>
+                            <label class="control-label" style="float: left; padding-right: 5px;"><?= $model->attributeLabels()['username'] ?>: </label>
+                            <span><?= $model->author ?></span>
                         </div>
 
+                        <div class="form-group clearfix">
+                            <label class="control-label" style="float: left; padding-right: 5px;"><?= $model->attributeLabels()['created_at'] ?>: </label>
+                            <span><?= $model->createdDateTime ?></span>
+                        </div>
+
+                        <div class="form-group clearfix">
+                            <label class="control-label" style="float: left; padding-right: 5px;"><?= $model->attributeLabels()['updated_at'] ?>: </label>
+                            <span><?= $model->updatedDateTime ?></span>
+                        </div>
+
+                        <div class="form-group clearfix">
+                            <label class="control-label" style="float: left; padding-right: 5px;"><?= $model->attributeLabels()['user_ip'] ?>: </label>
+                            <span><?= $model->user_ip ?></span>
+                        </div>
+
+                        <div class="form-group clearfix">
+                            <label class="control-label" style="float: left; padding-right: 5px;"><?= $model->attributeLabels()['email'] ?>: </label>
+                            <span><?= $model->email ?></span>
+                        </div>
+
+                        
+
                         <div class="form-group">
-                            <?php  if ($model->isNewRecord): ?>
-                                <?= GhostHtml::submitButton('<span class="glyphicon glyphicon-plus-sign"></span> Create',
+                            <?php if ($model->isNewRecord): ?>
+                                <?=
+                                GhostHtml::submitButton('<span class="glyphicon glyphicon-plus-sign"></span> Create',
                                     ['class' => 'btn btn-success'])
                                 ?>
-                                <?= GhostHtml::a('<span class="glyphicon glyphicon-remove"></span> Cancel',
-                                    '../comment',
-                                    ['class' => 'btn btn-default'])
+                                <?=
+                                GhostHtml::a('<span class="glyphicon glyphicon-remove"></span> Cancel',
+                                    '../comment', ['class' => 'btn btn-default'])
                                 ?>
-                            <?php  else: ?>
-                                <?= GhostHtml::submitButton('<span class="glyphicon glyphicon-ok"></span> Save',
+                            <?php else: ?>
+                                <?=
+                                GhostHtml::submitButton('<span class="glyphicon glyphicon-ok"></span> Save',
                                     ['class' => 'btn btn-primary'])
                                 ?>
-                                <?= GhostHtml::a('<span class="glyphicon glyphicon-remove"></span> Delete',
+                                <?=
+                                GhostHtml::a('<span class="glyphicon glyphicon-remove"></span> Delete',
                                     ['delete', 'id' => $model->id],
                                     [
                                     'class' => 'btn btn-default',
@@ -76,9 +96,29 @@ use yeesoft\usermanagement\components\GhostHtml;
                 </div>
             </div>
 
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <div class="record-info">
+                        <?=
+                        $form->field($model, 'status')->dropDownList(Comment::getStatusList(),
+                            ['class' => ''])
+                        ?>
+
+                        <?= $form->field($model, 'model')->textInput() ?>
+
+                        <?= $form->field($model, 'model_id')->textInput() ?>
+
+                        <?= $form->field($model, 'parent_id')->textInput() ?>
+                        
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
-    <?php  ActiveForm::end(); ?>
+    <?php ActiveForm::end(); ?>
 
 </div>
