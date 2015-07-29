@@ -1,8 +1,8 @@
 <?php
 
-use yii\widgets\ActiveForm;
 use yeesoft\comments\models\Comment;
 use yeesoft\usermanagement\components\GhostHtml;
+use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model yeesoft\comments\models\Comment */
@@ -13,9 +13,9 @@ use yeesoft\usermanagement\components\GhostHtml;
 
     <?php
     $form = ActiveForm::begin([
-            'id' => 'comment-form',
-            'validateOnBlur' => false,
-        ])
+        'id' => 'comment-form',
+        'validateOnBlur' => false,
+    ])
     ?>
 
     <div class="row">
@@ -38,31 +38,40 @@ use yeesoft\usermanagement\components\GhostHtml;
                     <div class="record-info">
 
                         <div class="form-group clearfix">
-                            <label class="control-label" style="float: left; padding-right: 5px;"><?= $model->attributeLabels()['username'] ?>: </label>
+                            <label class="control-label"
+                                   style="float: left; padding-right: 5px;"><?= $model->attributeLabels()['username'] ?>
+                                : </label>
                             <span><?= $model->author ?></span>
                         </div>
 
                         <div class="form-group clearfix">
-                            <label class="control-label" style="float: left; padding-right: 5px;"><?= $model->attributeLabels()['created_at'] ?>: </label>
+                            <label class="control-label"
+                                   style="float: left; padding-right: 5px;"><?= $model->attributeLabels()['created_at'] ?>
+                                : </label>
                             <span><?= $model->createdDateTime ?></span>
                         </div>
 
                         <div class="form-group clearfix">
-                            <label class="control-label" style="float: left; padding-right: 5px;"><?= $model->attributeLabels()['updated_at'] ?>: </label>
+                            <label class="control-label"
+                                   style="float: left; padding-right: 5px;"><?= $model->attributeLabels()['updated_at'] ?>
+                                : </label>
                             <span><?= $model->updatedDateTime ?></span>
                         </div>
 
                         <div class="form-group clearfix">
-                            <label class="control-label" style="float: left; padding-right: 5px;"><?= $model->attributeLabels()['user_ip'] ?>: </label>
+                            <label class="control-label"
+                                   style="float: left; padding-right: 5px;"><?= $model->attributeLabels()['user_ip'] ?>
+                                : </label>
                             <span><?= $model->user_ip ?></span>
                         </div>
 
                         <div class="form-group clearfix">
-                            <label class="control-label" style="float: left; padding-right: 5px;"><?= $model->attributeLabels()['email'] ?>: </label>
+                            <label class="control-label"
+                                   style="float: left; padding-right: 5px;"><?= $model->attributeLabels()['email'] ?>
+                                : </label>
                             <span><?= $model->email ?></span>
                         </div>
 
-                        
 
                         <div class="form-group">
                             <?php if ($model->isNewRecord): ?>
@@ -83,12 +92,12 @@ use yeesoft\usermanagement\components\GhostHtml;
                                 GhostHtml::a('<span class="glyphicon glyphicon-remove"></span> Delete',
                                     ['delete', 'id' => $model->id],
                                     [
-                                    'class' => 'btn btn-default',
-                                    'data' => [
-                                        'confirm' => 'Are you sure you want to delete this item?',
-                                        'method' => 'post',
-                                    ],
-                                ])
+                                        'class' => 'btn btn-default',
+                                        'data' => [
+                                            'confirm' => 'Are you sure you want to delete this item?',
+                                            'method' => 'post',
+                                        ],
+                                    ])
                                 ?>
                             <?php endif; ?>
                         </div>
@@ -111,7 +120,7 @@ use yeesoft\usermanagement\components\GhostHtml;
                         <?= $form->field($model, 'model_id')->textInput() ?>
 
                         <?= $form->field($model, 'parent_id')->textInput() ?>
-                        
+
                     </div>
                 </div>
             </div>

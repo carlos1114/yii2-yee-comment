@@ -1,7 +1,7 @@
 <?php
 
-use yii\db\Schema;
 use yii\db\Migration;
+use yii\db\Schema;
 
 class m150727_175300_add_comments_menu_links extends Migration
 {
@@ -11,7 +11,7 @@ class m150727_175300_add_comments_menu_links extends Migration
 
         $this->insert('menu_link',
             ['id' => 'comment', 'menu_id' => 'admin-main-menu', 'label' => 'Comments',
-            'link' => '/comment', 'image' => 'comment', 'order' => 8]);
+                'link' => '/comment', 'image' => 'comment', 'order' => 8]);
     }
 
     public function down()

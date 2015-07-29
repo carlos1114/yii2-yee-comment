@@ -2,10 +2,10 @@
 
 namespace yeesoft\comment\models\search;
 
+use yeesoft\comments\models\Comment;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use yeesoft\comments\models\Comment;
 
 /**
  * CommentSearch represents the model behind the search form about `yeesoft\comments\models\Comment`.
@@ -82,10 +82,10 @@ class CommentSearch extends Comment
         switch ($this->created_at_operand) {
             case '=':
                 $query->andFilterWhere(['>=', 'created_at', strtotime($this->created_at)]);
-                $query->andFilterWhere(['<=', 'created_at', strtotime($this->created_at.' 23:59:59')]);
+                $query->andFilterWhere(['<=', 'created_at', strtotime($this->created_at . ' 23:59:59')]);
                 break;
             case '>':
-                $query->andFilterWhere(['>', 'created_at', strtotime($this->created_at.' 23:59:59')]);
+                $query->andFilterWhere(['>', 'created_at', strtotime($this->created_at . ' 23:59:59')]);
                 break;
             case '<':
                 $query->andFilterWhere(['<', 'created_at', strtotime($this->created_at)]);

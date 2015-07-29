@@ -1,19 +1,18 @@
 <?php
 
-use yii\helpers\Url;
-use yii\helpers\Html;
-use yii\widgets\Pjax;
-use yeesoft\grid\GridView;
-use yeesoft\comments\models\Comment;
-use yeesoft\gridquicklinks\GridQuickLinks;
-use yeesoft\usermanagement\components\GhostHtml;
 use webvimark\extensions\GridPageSize\GridPageSize;
+use yeesoft\comments\models\Comment;
+use yeesoft\grid\GridView;
+use yeesoft\gridquicklinks\GridQuickLinks;
+use yii\helpers\Html;
+use yii\helpers\Url;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\CommentPost */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title                   = 'Comments';
+$this->title = 'Comments';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="comment-index">
@@ -34,10 +33,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         'model' => Comment::class,
                         'searchModel' => $searchModel,
                         'options' => [
-                            [ 'label' => 'Approved', 'filterWhere' => ['status' => Comment::STATUS_APPROVED]],
-                            [ 'label' => 'Pending', 'filterWhere' => ['status' => Comment::STATUS_PENDING]],
-                            [ 'label' => 'Spam', 'filterWhere' => ['status' => Comment::STATUS_SPAM]],
-                            [ 'label' => 'Trash', 'filterWhere' => ['status' => Comment::STATUS_TRASH]],
+                            ['label' => 'Approved', 'filterWhere' => ['status' => Comment::STATUS_APPROVED]],
+                            ['label' => 'Pending', 'filterWhere' => ['status' => Comment::STATUS_PENDING]],
+                            ['label' => 'Spam', 'filterWhere' => ['status' => Comment::STATUS_SPAM]],
+                            ['label' => 'Trash', 'filterWhere' => ['status' => Comment::STATUS_TRASH]],
                         ]
                     ])
                     ?>
@@ -74,24 +73,24 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'class' => 'yeesoft\grid\columns\TitleActionColumn',
                         'attribute' => 'content',
-                        'title' => function(Comment $model) {
-                        return Html::a(mb_substr($model->content, 0, 32).'...',
+                        'title' => function (Comment $model) {
+                            return Html::a(mb_substr($model->content, 0, 32) . '...',
                                 ['view', 'id' => $model->id], ['data-pjax' => 0]);
-                    },
+                        },
                     ],
                     [
                         'label' => 'User',
-                        'value' => function(Comment $model) {
-                        return $model->getAuthor();
-                    },
+                        'value' => function (Comment $model) {
+                            return $model->getAuthor();
+                        },
                         'options' => ['style' => 'width:150px'],
                     ],
                     [
                         'attribute' => 'model',
-                        'value' => function(Comment $model) {
-                        return $model->model.(($model->model_id) ? ' ['.$model->model_id.']'
-                                    : '');
-                    },
+                        'value' => function (Comment $model) {
+                            return $model->model . (($model->model_id) ? ' [' . $model->model_id . ']'
+                                : '');
+                        },
                         'options' => ['style' => 'width:120px'],
                     ],
                     // 'email:email',
@@ -105,11 +104,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'class' => 'yeesoft\grid\columns\DateFilterColumn',
                         'attribute' => 'created_at',
-                        'value' => function(Comment $model) {
-                        return '<span style="font-size:85%;" class="label label-'
-                            .((time() >= $model->created_at) ? 'primary' : 'default').'">'
-                            .$model->createdDateTime.'</span>';
-                    },
+                        'value' => function (Comment $model) {
+                            return '<span style="font-size:85%;" class="label label-'
+                            . ((time() >= $model->created_at) ? 'primary' : 'default') . '">'
+                            . $model->createdDateTime . '</span>';
+                        },
                         'format' => 'raw',
                         'options' => ['style' => 'width:150px'],
                     ],

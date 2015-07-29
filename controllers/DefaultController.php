@@ -2,16 +2,16 @@
 
 namespace yeesoft\comment\controllers;
 
-use Yii;
 use yeesoft\base\controllers\admin\BaseController;
 use yeesoft\comments\models\Comment;
+use Yii;
 
 /**
  * CommentController implements the CRUD actions for Post model.
  */
 class DefaultController extends BaseController
 {
-    public $modelClass       = 'yeesoft\comments\models\Comment';
+    public $modelClass = 'yeesoft\comments\models\Comment';
     public $modelSearchClass = 'yeesoft\comment\models\search\CommentSearch';
     public $disabledActions = ['create'];
 

@@ -1,13 +1,13 @@
 <?php
 
+use yeesoft\usermanagement\components\GhostHtml;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-use yeesoft\usermanagement\components\GhostHtml;
 
 /* @var $this yii\web\View */
 /* @var $model yeesoft\comments\models\Comment */
 
-$this->title                   = $model->id;
+$this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Comments', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -26,12 +26,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?=
                 GhostHtml::a('Delete', ['delete', 'id' => $model->id],
                     [
-                    'class' => 'btn btn-sm btn-default',
-                    'data' => [
-                        'confirm' => 'Are you sure you want to delete this item?',
-                        'method' => 'post',
-                    ],
-                ])
+                        'class' => 'btn btn-sm btn-default',
+                        'data' => [
+                            'confirm' => 'Are you sure you want to delete this item?',
+                            'method' => 'post',
+                        ],
+                    ])
                 ?>
                 <?=
                 GhostHtml::a('Add New', ['create'],
@@ -47,8 +47,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     'id',
                     [
                         'attribute' => 'model',
-                        'value' => $model->model.
-                        (($model->model_id) ? '::'.$model->model_id : ''),
+                        'value' => $model->model .
+                            (($model->model_id) ? '::' . $model->model_id : ''),
                     ],
                     [
                         'attribute' => 'username',
@@ -57,8 +57,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     'email:email',
                     [
                         'attribute' => 'parent_id',
-                        'value' => ($model->parent_id) ? Html::a('comment_'.$model->parent_id,
-                                ['view', 'id' => $model->parent_id]) : NULL,
+                        'value' => ($model->parent_id) ? Html::a('comment_' . $model->parent_id,
+                            ['view', 'id' => $model->parent_id]) : NULL,
                         'format' => 'raw'
                     ],
                     [
