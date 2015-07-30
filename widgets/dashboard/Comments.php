@@ -34,7 +34,7 @@ class Comments extends \yii\base\Widget
         $searchModel = new CommentSearch();
         $formName = $searchModel->formName();
 
-        $recentComments = Comment::find()->active()->orderBy(['id' => 'DESC'])->limit($this->recentLimit)->all();
+        $recentComments = Comment::find()->active()->orderBy(['id' => SORT_DESC])->limit($this->recentLimit)->all();
 
         foreach ($this->options as &$option) {
             $count = Comment::find()->filterWhere($option['filterWhere'])->count();
