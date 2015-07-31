@@ -4,8 +4,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 ?>
 
-<div class="col-lg-8 widget-height-3">
-    <div class="panel panel-default" style="position:relative;">
+<div class="pull-<?= $position ?> col-lg-<?= $width ?> widget-height-<?= $height ?>">
+    <div class="panel panel-default" style="position:relative; padding-bottom:15px;">
         <div class="panel-heading">Comments Activity</div>
         <div class="panel-body">
 
@@ -28,7 +28,6 @@ use yii\helpers\Html;
                     <?= Html::a('<b>' . $comment['count'] . '</b> ' . $comment['label'], $comment['url']); ?> &nbsp; | &nbsp;
                 <?php endforeach; ?>
             </div>
-
 
         </div>
     </div>

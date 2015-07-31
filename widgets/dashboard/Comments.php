@@ -8,6 +8,22 @@ use yeesoft\comments\models\Comment;
 class Comments extends \yii\base\Widget
 {
     /**
+     * Widget Height
+     */
+    public $height = 'auto';
+
+    /**
+     * Widget Width
+     */
+    public $width = '8';
+
+    /**
+     *
+     * @var type
+     */
+    public $position = 'left';
+
+    /**
      * Most recent comments limit
      */
     public $recentLimit = 5;
@@ -42,8 +58,12 @@ class Comments extends \yii\base\Widget
             $option['url'] = [$this->commentIndexAction, $formName => $option['filterWhere']];
         }
 
-        return $this->render('comments',
-            ['comments' => $this->options,
-                'recentComments' => $recentComments]);
+        return $this->render('comments', [
+            'height' => $this->height,
+            'width' => $this->width,
+            'position' => $this->position,
+            'comments' => $this->options,
+            'recentComments' => $recentComments,
+        ]);
     }
 }
