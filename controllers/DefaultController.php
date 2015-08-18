@@ -2,7 +2,7 @@
 
 namespace yeesoft\comment\controllers;
 
-use yeesoft\base\controllers\admin\BaseController;
+use yeesoft\controllers\admin\BaseController;
 use yeesoft\comments\models\Comment;
 use Yii;
 

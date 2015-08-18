@@ -9,7 +9,7 @@ use yii\helpers\Url;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
-/* @var $searchModel frontend\models\CommentPost */
+/* @var $searchModel yeesoft\comments\models\search\CommentSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Comments';

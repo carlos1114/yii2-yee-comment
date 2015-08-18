@@ -20,10 +20,8 @@ class CommentSearch extends Comment
     public function rules()
     {
         return [
-            [['id', 'model_id', 'user_id', 'parent_id', 'status', 'updated_at'],
-                'integer'],
-            [['model', 'username', 'email', 'content', 'user_ip', 'created_at', 'created_at_operand'],
-                'safe'],
+            [['id', 'model_id', 'user_id', 'parent_id', 'status', 'updated_at'], 'integer'],
+            [['model', 'username', 'email', 'content', 'user_ip', 'created_at', 'created_at_operand'], 'safe'],
         ];
     }
 
@@ -50,8 +48,7 @@ class CommentSearch extends Comment
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => Yii::$app->request->cookies->getValue('_grid_page_size',
-                    20),
+                'pageSize' => Yii::$app->request->cookies->getValue('_grid_page_size', 20),
             ],
             'sort' => [
                 'defaultOrder' => [
@@ -93,7 +90,6 @@ class CommentSearch extends Comment
             default:
                 break;
         }
-
 
         $query->andFilterWhere(['like', 'model', $this->model])
             ->andFilterWhere(['like', 'username', $this->username])

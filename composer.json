@@ -9,7 +9,7 @@
     }
   ],
   "require": {
-    "yeesoft/yii2-yee-base": "dev-master",
+    "yeesoft/yii2-yee-core": "dev-master",
     "yeesoft/yii2-comments": "dev-master",
     "yeesoft/yii2-grid-plus": "dev-master",
     "yeesoft/yii2-grid-quick-links": "dev-master",

@@ -1,6 +1,6 @@
 <?php
 
-use yeesoft\usermanagement\components\GhostHtml;
+use yeesoft\helpers\Html;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
@@ -19,12 +19,9 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="panel-body">
 
             <p>
+                <?= Html::a('Edit', ['update', 'id' => $model->id], ['class' => 'btn btn-sm btn-primary']) ?>
                 <?=
-                GhostHtml::a('Edit', ['update', 'id' => $model->id],
-                    ['class' => 'btn btn-sm btn-primary'])
-                ?>
-                <?=
-                GhostHtml::a('Delete', ['delete', 'id' => $model->id],
+                Html::a('Delete', ['delete', 'id' => $model->id],
                     [
                         'class' => 'btn btn-sm btn-default',
                         'data' => [
@@ -33,12 +30,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         ],
                     ])
                 ?>
-                <?=
-                GhostHtml::a('Add New', ['create'],
-                    ['class' => 'btn btn-sm btn-primary pull-right'])
-                ?>
+                <?= Html::a('Add New', ['create'], ['class' => 'btn btn-sm btn-primary pull-right']) ?>
             </p>
-
 
             <?=
             DetailView::widget([
