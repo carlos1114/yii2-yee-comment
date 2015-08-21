@@ -2,8 +2,8 @@
 
 use webvimark\extensions\GridPageSize\GridPageSize;
 use yeesoft\comments\models\Comment;
+use yeesoft\grid\GridQuickLinks;
 use yeesoft\grid\GridView;
-use yeesoft\gridquicklinks\GridQuickLinks;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\Pjax;
@@ -72,10 +72,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     ['class' => 'yii\grid\CheckboxColumn', 'options' => ['style' => 'width:10px']],
                     [
                         'class' => 'yeesoft\grid\columns\TitleActionColumn',
+                        'controller' => '/comment/default',
                         'attribute' => 'content',
                         'title' => function (Comment $model) {
                             return Html::a(mb_substr($model->content, 0, 32) . '...',
-                                ['view', 'id' => $model->id], ['data-pjax' => 0]);
+                                ['/comment/default/view', 'id' => $model->id], ['data-pjax' => 0]);
                         },
                     ],
                     [

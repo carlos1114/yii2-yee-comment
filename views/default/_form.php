@@ -23,9 +23,7 @@ use yii\widgets\ActiveForm;
 
             <div class="panel panel-default">
                 <div class="panel-body">
-
                     <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
-
                 </div>
 
             </div>
@@ -74,32 +72,19 @@ use yii\widgets\ActiveForm;
 
 
                         <div class="form-group">
-                            <?php if ($model->isNewRecord): ?>
-                                <?=
-                                Html::submitButton('<span class="glyphicon glyphicon-plus-sign"></span> Create',
-                                    ['class' => 'btn btn-success'])
-                                ?>
-                                <?=
-                                Html::a('<span class="glyphicon glyphicon-remove"></span> Cancel',
-                                    '../comment', ['class' => 'btn btn-default'])
-                                ?>
-                            <?php else: ?>
-                                <?=
-                                Html::submitButton('<span class="glyphicon glyphicon-ok"></span> Save',
-                                    ['class' => 'btn btn-primary'])
-                                ?>
-                                <?=
-                                Html::a('<span class="glyphicon glyphicon-remove"></span> Delete',
-                                    ['delete', 'id' => $model->id],
-                                    [
-                                        'class' => 'btn btn-default',
-                                        'data' => [
-                                            'confirm' => 'Are you sure you want to delete this item?',
-                                            'method' => 'post',
-                                        ],
-                                    ])
-                                ?>
-                            <?php endif; ?>
+                            <?= Html::submitButton('<span class="glyphicon glyphicon-ok"></span> Save', ['class' => 'btn btn-primary']) ?>
+
+                            <?=
+                            Html::a('<span class="glyphicon glyphicon-remove"></span> Delete',
+                                ['/comment/default/delete', 'id' => $model->id],
+                                [
+                                    'class' => 'btn btn-default',
+                                    'data' => [
+                                        'confirm' => 'Are you sure you want to delete this item?',
+                                        'method' => 'post',
+                                    ],
+                                ])
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -109,7 +94,7 @@ use yii\widgets\ActiveForm;
                 <div class="panel-body">
 
                     <div class="record-info">
-                        
+
                         <?= $form->field($model, 'status')->dropDownList(Comment::getStatusList(), ['class' => '']) ?>
 
                         <?= $form->field($model, 'model')->textInput() ?>

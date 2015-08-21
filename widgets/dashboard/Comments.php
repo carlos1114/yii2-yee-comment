@@ -4,6 +4,7 @@ namespace yeesoft\comment\widgets\dashboard;
 
 use yeesoft\comment\models\search\CommentSearch;
 use yeesoft\comments\models\Comment;
+use yeesoft\models\User;
 
 class Comments extends \yii\base\Widget
 {
@@ -47,23 +48,25 @@ class Comments extends \yii\base\Widget
 
     public function run()
     {
-        $searchModel = new CommentSearch();
-        $formName = $searchModel->formName();
+        if (User::hasPermission('viewComments')) {
+            $searchModel = new CommentSearch();
+            $formName = $searchModel->formName();
 
-        $recentComments = Comment::find()->active()->orderBy(['id' => SORT_DESC])->limit($this->recentLimit)->all();
+            $recentComments = Comment::find()->active()->orderBy(['id' => SORT_DESC])->limit($this->recentLimit)->all();
 
-        foreach ($this->options as &$option) {
-            $count = Comment::find()->filterWhere($option['filterWhere'])->count();
-            $option['count'] = $count;
-            $option['url'] = [$this->commentIndexAction, $formName => $option['filterWhere']];
+            foreach ($this->options as &$option) {
+                $count = Comment::find()->filterWhere($option['filterWhere'])->count();
+                $option['count'] = $count;
+                $option['url'] = [$this->commentIndexAction, $formName => $option['filterWhere']];
+            }
+
+            return $this->render('comments', [
+                'height' => $this->height,
+                'width' => $this->width,
+                'position' => $this->position,
+                'comments' => $this->options,
+                'recentComments' => $recentComments,
+            ]);
         }
-
-        return $this->render('comments', [
-            'height' => $this->height,
-            'width' => $this->width,
-            'position' => $this->position,
-            'comments' => $this->options,
-            'recentComments' => $recentComments,
-        ]);
     }
 }

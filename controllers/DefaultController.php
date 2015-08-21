@@ -2,8 +2,8 @@
 
 namespace yeesoft\comment\controllers;
 
-use yeesoft\controllers\admin\BaseController;
 use yeesoft\comments\models\Comment;
+use yeesoft\controllers\admin\BaseController;
 use Yii;
 
 /**
@@ -19,9 +19,6 @@ class DefaultController extends BaseController
     {
         switch ($action) {
             case 'update':
-                return ['update', 'id' => $model->id];
-                break;
-            case 'create':
                 return ['update', 'id' => $model->id];
                 break;
             default:
