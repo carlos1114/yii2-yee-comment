@@ -11,7 +11,7 @@ Comments module allows you manage comments from control panel.
 Installation
 ------------
 
-Either run
+- Either run
 
 ```
 composer require --prefer-dist yeesoft/yii2-yee-comment "*"
@@ -25,6 +25,12 @@ or add
 
 to the require section of your `composer.json` file.
 
+- Run migrations
+
+```php
+yii migrate --migrationPath=@vendor/yeesoft/yii2-yee-comment/migrations/
+```
+
 Configuration
 ------
 - Install and configurate [Frontend Comments Module](https://github.com/yeesoft/yii2-comments)
@@ -37,12 +43,6 @@ Configuration
         'class' => 'yeesoft\comment\CommentModule',
     ],
 ],
-```
-
-- Run migrations
-
-```php
-yii migrate --migrationPath=@vendor/yeesoft/yii2-yee-comment/migrations/
 ```
 
 Dashboard widget
