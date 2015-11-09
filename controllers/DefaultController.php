@@ -13,7 +13,7 @@ class DefaultController extends BaseController
 {
     public $modelClass = 'yeesoft\comments\models\Comment';
     public $modelSearchClass = 'yeesoft\comment\models\search\CommentSearch';
-    public $disabledActions = ['create'];
+    public $disabledActions = ['create', 'view'];
 
     protected function getRedirectPage($action, $model = null)
     {

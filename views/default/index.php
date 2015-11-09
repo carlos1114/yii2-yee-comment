@@ -7,12 +7,14 @@ use yeesoft\grid\GridView;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\Pjax;
+use yeesoft\comments\Comments;
+use yeesoft\Yee;
 
 /* @var $this yii\web\View */
 /* @var $searchModel yeesoft\comments\models\search\CommentSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Comments';
+$this->title = Comments::t('comments', 'Comments');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="comment-index">
@@ -33,10 +35,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         'model' => Comment::class,
                         'searchModel' => $searchModel,
                         'options' => [
-                            ['label' => 'Approved', 'filterWhere' => ['status' => Comment::STATUS_APPROVED]],
-                            ['label' => 'Pending', 'filterWhere' => ['status' => Comment::STATUS_PENDING]],
-                            ['label' => 'Spam', 'filterWhere' => ['status' => Comment::STATUS_SPAM]],
-                            ['label' => 'Trash', 'filterWhere' => ['status' => Comment::STATUS_TRASH]],
+                            ['label' => Yee::t('yee', 'Approved'), 'filterWhere' => ['status' => Comment::STATUS_APPROVED]],
+                            ['label' => Yee::t('yee', 'Pending'), 'filterWhere' => ['status' => Comment::STATUS_PENDING]],
+                            ['label' => Yee::t('yee', 'Spam'), 'filterWhere' => ['status' => Comment::STATUS_SPAM]],
+                            ['label' => Yee::t('yee', 'Trash'), 'filterWhere' => ['status' => Comment::STATUS_TRASH]],
                         ]
                     ])
                     ?>
@@ -61,11 +63,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'bulkActionOptions' => [
                     'gridId' => 'comment-grid',
                     'actions' => [
-                        Url::to(['bulk-activate']) => 'Approve',
-                        Url::to(['bulk-deactivate']) => 'Unapprove',
-                        Url::to(['bulk-spam']) => 'Mark as Spam',
-                        Url::to(['bulk-trash']) => 'Move to Trash',
-                        Url::to(['bulk-delete']) => 'Delete',
+                        Url::to(['bulk-activate']) => Comments::t('comments', 'Approve'),
+                        Url::to(['bulk-deactivate']) => Comments::t('comments', 'Unapprove'),
+                        Url::to(['bulk-spam']) => Comments::t('comments', 'Mark as Spam'),
+                        Url::to(['bulk-trash']) => Comments::t('comments', 'Move to Trash'),
+                        Url::to(['bulk-delete']) => Yee::t('yee', 'Delete'),
                     ]
                 ],
                 'columns' => [
@@ -78,9 +80,10 @@ $this->params['breadcrumbs'][] = $this->title;
                             return Html::a(mb_substr($model->content, 0, 32) . '...',
                                 ['/comment/default/view', 'id' => $model->id], ['data-pjax' => 0]);
                         },
+                        'buttonsTemplate' => '{update} {delete}',
                     ],
                     [
-                        'label' => 'User',
+                        'label' => Yee::t('yee', 'User'),
                         'value' => function (Comment $model) {
                             return $model->getAuthor();
                         },

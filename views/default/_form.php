@@ -3,6 +3,8 @@
 use yeesoft\comments\models\Comment;
 use yeesoft\helpers\Html;
 use yii\widgets\ActiveForm;
+use Yii;
+use yeesoft\Yee;
 
 /* @var $this yii\web\View */
 /* @var $model yeesoft\comments\models\Comment */
@@ -23,7 +25,11 @@ use yii\widgets\ActiveForm;
 
             <div class="panel panel-default">
                 <div class="panel-body">
+
+                    <?= $form->field($model, 'status')->dropDownList(Comment::getStatusList()) ?>
+
                     <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
+                    
                 </div>
 
             </div>
@@ -42,6 +48,27 @@ use yii\widgets\ActiveForm;
                             <span><?= $model->author ?></span>
                         </div>
 
+                        <div class="form-group clearfix">
+                            <label class="control-label" style="float: left; padding-right: 5px;">
+                                <?= $model->attributeLabels()['email'] ?> :
+                            </label>
+                            <span><?= $model->email ?></span>
+                        </div>
+
+                        <div class="form-group clearfix">
+                            <label class="control-label" style="float: left; padding-right: 5px;">
+                                <?= $model->attributeLabels()['model'] ?> :
+                            </label>
+                            <span><?= "$model->model->{$model->model_id}" ?></span>
+                        </div>
+
+                        <div class="form-group clearfix">
+                            <label class="control-label" style="float: left; padding-right: 5px;">
+                                <?= $model->attributeLabels()['parent_id'] ?> :
+                            </label>
+                            <span><?= $model->parent_id ?></span>
+                        </div>
+                        
                         <div class="form-group clearfix">
                             <label class="control-label" style="float: left; padding-right: 5px;">
                                 <?= $model->attributeLabels()['created_at'] ?> :
@@ -63,46 +90,18 @@ use yii\widgets\ActiveForm;
                             <span><?= $model->user_ip ?></span>
                         </div>
 
-                        <div class="form-group clearfix">
-                            <label class="control-label" style="float: left; padding-right: 5px;">
-                                <?= $model->attributeLabels()['email'] ?> :
-                            </label>
-                            <span><?= $model->email ?></span>
-                        </div>
-
-
                         <div class="form-group">
-                            <?= Html::submitButton('<span class="glyphicon glyphicon-ok"></span> Save', ['class' => 'btn btn-primary']) ?>
+                            <?= Html::submitButton(Yee::t('yee', 'Save'), ['class' => 'btn btn-primary']) ?>
 
-                            <?=
-                            Html::a('<span class="glyphicon glyphicon-remove"></span> Delete',
-                                ['/comment/default/delete', 'id' => $model->id],
-                                [
+                            <?= Html::a(Yee::t('yee', 'Delete'),
+                                ['/comment/default/delete', 'id' => $model->id], [
                                     'class' => 'btn btn-default',
                                     'data' => [
-                                        'confirm' => 'Are you sure you want to delete this item?',
+                                        'confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
                                         'method' => 'post',
                                     ],
-                                ])
-                            ?>
+                                ]) ?>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="panel panel-default">
-                <div class="panel-body">
-
-                    <div class="record-info">
-
-                        <?= $form->field($model, 'status')->dropDownList(Comment::getStatusList(), ['class' => '']) ?>
-
-                        <?= $form->field($model, 'model')->textInput() ?>
-
-                        <?= $form->field($model, 'model_id')->textInput() ?>
-
-                        <?= $form->field($model, 'parent_id')->textInput() ?>
-
                     </div>
                 </div>
             </div>

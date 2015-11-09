@@ -8,7 +8,6 @@ class m150825_212941_add_comments_permissions extends Migration
 
     public function up()
     {
-
         $this->insert('auth_item_group', ['code' => 'commentsManagement', 'name' => 'Comments Management', 'created_at' => '1440180000', 'updated_at' => '1440180000']);
 
         $this->insert('auth_item', ['name' => '/admin/comment/*', 'type' => '3', 'created_at' => '1440180000', 'updated_at' => '1440180000']);
