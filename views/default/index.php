@@ -8,7 +8,6 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\Pjax;
 use yeesoft\comments\Comments;
-use yeesoft\Yee;
 
 /* @var $this yii\web\View */
 /* @var $searchModel yeesoft\comments\models\search\CommentSearch */
@@ -35,10 +34,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         'model' => Comment::class,
                         'searchModel' => $searchModel,
                         'options' => [
-                            ['label' => Yee::t('yee', 'Approved'), 'filterWhere' => ['status' => Comment::STATUS_APPROVED]],
-                            ['label' => Yee::t('yee', 'Pending'), 'filterWhere' => ['status' => Comment::STATUS_PENDING]],
-                            ['label' => Yee::t('yee', 'Spam'), 'filterWhere' => ['status' => Comment::STATUS_SPAM]],
-                            ['label' => Yee::t('yee', 'Trash'), 'filterWhere' => ['status' => Comment::STATUS_TRASH]],
+                            ['label' => Yii::t('yee', 'Approved'), 'filterWhere' => ['status' => Comment::STATUS_APPROVED]],
+                            ['label' => Yii::t('yee', 'Pending'), 'filterWhere' => ['status' => Comment::STATUS_PENDING]],
+                            ['label' => Yii::t('yee', 'Spam'), 'filterWhere' => ['status' => Comment::STATUS_SPAM]],
+                            ['label' => Yii::t('yee', 'Trash'), 'filterWhere' => ['status' => Comment::STATUS_TRASH]],
                         ]
                     ])
                     ?>
@@ -67,7 +66,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         Url::to(['bulk-deactivate']) => Comments::t('comments', 'Unapprove'),
                         Url::to(['bulk-spam']) => Comments::t('comments', 'Mark as Spam'),
                         Url::to(['bulk-trash']) => Comments::t('comments', 'Move to Trash'),
-                        Url::to(['bulk-delete']) => Yee::t('yee', 'Delete'),
+                        Url::to(['bulk-delete']) => Yii::t('yee', 'Delete'),
                     ]
                 ],
                 'columns' => [
@@ -83,7 +82,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'buttonsTemplate' => '{update} {delete}',
                     ],
                     [
-                        'label' => Yee::t('yee', 'User'),
+                        'label' => Yii::t('yee', 'User'),
                         'value' => function (Comment $model) {
                             return $model->getAuthor();
                         },
@@ -111,7 +110,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'value' => function (Comment $model) {
                             return '<span style="font-size:85%;" class="label label-'
                             . ((time() >= $model->created_at) ? 'primary' : 'default') . '">'
-                            . $model->createdDateTime . '</span>';
+                            . $model->createdDate . ' ' . $model->createdTime . '</span>';
                         },
                         'format' => 'raw',
                         'options' => ['style' => 'width:150px'],

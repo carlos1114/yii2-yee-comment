@@ -4,7 +4,6 @@ use yeesoft\comments\models\Comment;
 use yeesoft\helpers\Html;
 use yii\widgets\ActiveForm;
 use Yii;
-use yeesoft\Yee;
 
 /* @var $this yii\web\View */
 /* @var $model yeesoft\comments\models\Comment */
@@ -15,9 +14,9 @@ use yeesoft\Yee;
 
     <?php
     $form = ActiveForm::begin([
-        'id' => 'comment-form',
-        'validateOnBlur' => false,
-    ])
+            'id' => 'comment-form',
+            'validateOnBlur' => false,
+        ])
     ?>
 
     <div class="row">
@@ -29,7 +28,7 @@ use yeesoft\Yee;
                     <?= $form->field($model, 'status')->dropDownList(Comment::getStatusList()) ?>
 
                     <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
-                    
+
                 </div>
 
             </div>
@@ -52,7 +51,7 @@ use yeesoft\Yee;
                             <label class="control-label" style="float: left; padding-right: 5px;">
                                 <?= $model->attributeLabels()['email'] ?> :
                             </label>
-                            <span><?= $model->email ?></span>
+                            <span><?= ($model->email) ? $model->email : Yii::t('yii', '(not set)') ?></span>
                         </div>
 
                         <div class="form-group clearfix">
@@ -68,19 +67,19 @@ use yeesoft\Yee;
                             </label>
                             <span><?= $model->parent_id ?></span>
                         </div>
-                        
+
                         <div class="form-group clearfix">
                             <label class="control-label" style="float: left; padding-right: 5px;">
                                 <?= $model->attributeLabels()['created_at'] ?> :
                             </label>
-                            <span><?= $model->createdDateTime ?></span>
+                            <span><?= $model->createdDate.' '.$model->createdTime ?></span>
                         </div>
 
                         <div class="form-group clearfix">
                             <label class="control-label" style="float: left; padding-right: 5px;">
                                 <?= $model->attributeLabels()['updated_at'] ?> :
                             </label>
-                            <span><?= $model->updatedDateTime ?></span>
+                            <span><?= $model->updatedDate.' '.$model->updatedTime ?></span>
                         </div>
 
                         <div class="form-group clearfix">
@@ -91,16 +90,17 @@ use yeesoft\Yee;
                         </div>
 
                         <div class="form-group">
-                            <?= Html::submitButton(Yee::t('yee', 'Save'), ['class' => 'btn btn-primary']) ?>
+                            <?= Html::submitButton(Yii::t('yee', 'Save'), ['class' => 'btn btn-primary']) ?>
 
-                            <?= Html::a(Yee::t('yee', 'Delete'),
-                                ['/comment/default/delete', 'id' => $model->id], [
-                                    'class' => 'btn btn-default',
-                                    'data' => [
-                                        'confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
-                                        'method' => 'post',
-                                    ],
-                                ]) ?>
+                            <?=
+                            Html::a(Yii::t('yee', 'Delete'), ['/comment/default/delete', 'id' => $model->id], [
+                                'class' => 'btn btn-default',
+                                'data' => [
+                                    'confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
+                                    'method' => 'post',
+                                ],
+                            ])
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -109,6 +109,6 @@ use yeesoft\Yee;
         </div>
     </div>
 
-    <?php ActiveForm::end(); ?>
+<?php ActiveForm::end(); ?>
 
 </div>

@@ -15,7 +15,7 @@ use yii\helpers\Html;
                 <?php foreach ($recentComments as $comment) : ?>
                     <div class="clearfix" style="border-bottom: 1px solid #eee; margin: 7px; padding: 0 0 5px 5px;">
                         <span style="font-size:80%; margin-right: 10px;"
-                              class="label label-primary">[<?= $comment->createdDateTime ?>]</span>
+                              class="label label-primary">[<?= "{$comment->createdDate} {$comment->createdTime}" ?>]</span>
                         <b><i><?= $comment->getAuthor() ?>:</i></b>
                         <?= mb_substr($comment->content, 0, 64, "UTF-8") ?>...<br/>
                     </div>
