@@ -3,7 +3,6 @@
 use yeesoft\comments\models\Comment;
 use yeesoft\helpers\Html;
 use yii\widgets\ActiveForm;
-use Yii;
 
 /* @var $this yii\web\View */
 /* @var $model yeesoft\comments\models\Comment */
@@ -14,9 +13,9 @@ use Yii;
 
     <?php
     $form = ActiveForm::begin([
-            'id' => 'comment-form',
-            'validateOnBlur' => false,
-        ])
+        'id' => 'comment-form',
+        'validateOnBlur' => false,
+    ])
     ?>
 
     <div class="row">
@@ -72,14 +71,14 @@ use Yii;
                             <label class="control-label" style="float: left; padding-right: 5px;">
                                 <?= $model->attributeLabels()['created_at'] ?> :
                             </label>
-                            <span><?= $model->createdDate.' '.$model->createdTime ?></span>
+                            <span><?= $model->createdDate . ' ' . $model->createdTime ?></span>
                         </div>
 
                         <div class="form-group clearfix">
                             <label class="control-label" style="float: left; padding-right: 5px;">
                                 <?= $model->attributeLabels()['updated_at'] ?> :
                             </label>
-                            <span><?= $model->updatedDate.' '.$model->updatedTime ?></span>
+                            <span><?= $model->updatedDate . ' ' . $model->updatedTime ?></span>
                         </div>
 
                         <div class="form-group clearfix">
@@ -109,6 +108,6 @@ use Yii;
         </div>
     </div>
 
-<?php ActiveForm::end(); ?>
+    <?php ActiveForm::end(); ?>
 
 </div>

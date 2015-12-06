@@ -1,7 +1,7 @@
 <?php
 
-use yii\helpers\Html;
 use yeesoft\comments\Comments;
+use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model yeesoft\comments\models\Comment */

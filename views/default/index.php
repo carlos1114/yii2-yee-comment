@@ -1,13 +1,13 @@
 <?php
 
-use webvimark\extensions\GridPageSize\GridPageSize;
+use yeesoft\comments\Comments;
 use yeesoft\comments\models\Comment;
+use yeesoft\grid\GridPageSize;
 use yeesoft\grid\GridQuickLinks;
 use yeesoft\grid\GridView;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\Pjax;
-use yeesoft\comments\Comments;
 
 /* @var $this yii\web\View */
 /* @var $searchModel yeesoft\comments\models\search\CommentSearch */

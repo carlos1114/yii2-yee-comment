@@ -5,25 +5,11 @@ namespace yeesoft\comment\widgets\dashboard;
 use yeesoft\comment\models\search\CommentSearch;
 use yeesoft\comments\models\Comment;
 use yeesoft\models\User;
+use yeesoft\widgets\DashboardWidget;
+use Yii;
 
-class Comments extends \yii\base\Widget
+class Comments extends DashboardWidget
 {
-    /**
-     * Widget Height
-     */
-    public $height = 'auto';
-
-    /**
-     * Widget Width
-     */
-    public $width = '8';
-
-    /**
-     *
-     * @var type
-     */
-    public $position = 'left';
-
     /**
      * Most recent comments limit
      */
@@ -39,15 +25,14 @@ class Comments extends \yii\base\Widget
      *
      * @var array
      */
-    public $options = [
-        ['label' => 'Approved', 'icon' => 'ok', 'filterWhere' => ['status' => Comment::STATUS_APPROVED]],
-        ['label' => 'Pending', 'icon' => 'search', 'filterWhere' => ['status' => Comment::STATUS_PENDING]],
-        ['label' => 'Spam', 'icon' => 'ban-circle', 'filterWhere' => ['status' => Comment::STATUS_SPAM]],
-        ['label' => 'Trash', 'icon' => 'trash', 'filterWhere' => ['status' => Comment::STATUS_TRASH]],
-    ];
+    public $options;
 
     public function run()
     {
+        if (!$this->options) {
+            $this->options = $this->getDefaultOptions();
+        }
+
         if (User::hasPermission('viewComments')) {
             $searchModel = new CommentSearch();
             $formName = $searchModel->formName();
@@ -68,5 +53,15 @@ class Comments extends \yii\base\Widget
                 'recentComments' => $recentComments,
             ]);
         }
+    }
+
+    public function getDefaultOptions()
+    {
+        return [
+            ['label' => Yii::t('yee', 'Approved'), 'icon' => 'ok', 'filterWhere' => ['status' => Comment::STATUS_APPROVED]],
+            ['label' => Yii::t('yee', 'Pending'), 'icon' => 'search', 'filterWhere' => ['status' => Comment::STATUS_PENDING]],
+            ['label' => Yii::t('yee', 'Spam'), 'icon' => 'ban-circle', 'filterWhere' => ['status' => Comment::STATUS_SPAM]],
+            ['label' => Yii::t('yee', 'Trash'), 'icon' => 'trash', 'filterWhere' => ['status' => Comment::STATUS_TRASH]],
+        ];
     }
 }
