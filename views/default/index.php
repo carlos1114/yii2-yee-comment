@@ -77,7 +77,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attribute' => 'content',
                         'title' => function (Comment $model) {
                             return Html::a(mb_substr($model->content, 0, 32) . '...',
-                                ['/comment/default/view', 'id' => $model->id], ['data-pjax' => 0]);
+                                ['/comment/default/update', 'id' => $model->id], ['data-pjax' => 0]);
                         },
                         'buttonsTemplate' => '{update} {delete}',
                     ],

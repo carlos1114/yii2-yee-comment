@@ -27,13 +27,13 @@ Comments::getInstance()->commentsAssetUrl = $commentsAsset->baseUrl;
 
                                 <div class="comment-content">
                                     <div class="comment-header">
-                                        <a class="author"><?= HtmlPurifier::process($comment->getAuthor()); ?></a>
+                                        <a class="author"><?= Html::encode($comment->getAuthor()); ?></a>
                                         <span class="time dot-left dot-right">
                                             <?= "{$comment->createdDate} {$comment->createdTime}" ?>
                                         </span>
                                     </div>
                                     <div class="comment-text">
-                                        <?= HtmlPurifier::process(mb_substr($comment->content, 0, 64, "UTF-8")); ?>
+                                        <?= HtmlPurifier::process(mb_substr(Html::encode($comment->content), 0, 64, "UTF-8")); ?>
                                         <?= (strlen($comment->content) > 64) ? '...' : '' ?>
                                     </div>
                                 </div>
