@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="col-sm-6">
                     <?php
                     echo GridQuickLinks::widget([
-                        'model' => Comment::class,
+                        'model' => Comment::className(),
                         'searchModel' => $searchModel,
                         'options' => [
                             ['label' => Yii::t('yee', 'Approved'), 'filterWhere' => ['status' => Comment::STATUS_APPROVED]],
