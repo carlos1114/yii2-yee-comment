@@ -52,24 +52,24 @@ class m150825_212941_add_comments_permissions extends Migration
 
     public function down()
     {
-        $this->insert('auth_item', ['name' => '/admin/comment/*']);
-        $this->insert('auth_item', ['name' => '/admin/comment/default/*']);
-        $this->insert('auth_item', ['name' => '/admin/comment/default/bulk-activate']);
-        $this->insert('auth_item', ['name' => '/admin/comment/default/bulk-deactivate']);
-        $this->insert('auth_item', ['name' => '/admin/comment/default/bulk-delete']);
-        $this->insert('auth_item', ['name' => '/admin/comment/default/bulk-spam']);
-        $this->insert('auth_item', ['name' => '/admin/comment/default/bulk-trash']);
-        $this->insert('auth_item', ['name' => '/admin/comment/default/delete']);
-        $this->insert('auth_item', ['name' => '/admin/comment/default/grid-page-size']);
-        $this->insert('auth_item', ['name' => '/admin/comment/default/grid-sort']);
-        $this->insert('auth_item', ['name' => '/admin/comment/default/index']);
-        $this->insert('auth_item', ['name' => '/admin/comment/default/toggle-attribute']);
-        $this->insert('auth_item', ['name' => '/admin/comment/default/update']);
-        $this->insert('auth_item', ['name' => '/admin/comment/default/view']);
+        $this->delete('auth_item', ['name' => '/admin/comment/*']);
+        $this->delete('auth_item', ['name' => '/admin/comment/default/*']);
+        $this->delete('auth_item', ['name' => '/admin/comment/default/bulk-activate']);
+        $this->delete('auth_item', ['name' => '/admin/comment/default/bulk-deactivate']);
+        $this->delete('auth_item', ['name' => '/admin/comment/default/bulk-delete']);
+        $this->delete('auth_item', ['name' => '/admin/comment/default/bulk-spam']);
+        $this->delete('auth_item', ['name' => '/admin/comment/default/bulk-trash']);
+        $this->delete('auth_item', ['name' => '/admin/comment/default/delete']);
+        $this->delete('auth_item', ['name' => '/admin/comment/default/grid-page-size']);
+        $this->delete('auth_item', ['name' => '/admin/comment/default/grid-sort']);
+        $this->delete('auth_item', ['name' => '/admin/comment/default/index']);
+        $this->delete('auth_item', ['name' => '/admin/comment/default/toggle-attribute']);
+        $this->delete('auth_item', ['name' => '/admin/comment/default/update']);
+        $this->delete('auth_item', ['name' => '/admin/comment/default/view']);
 
-        $this->insert('auth_item', ['name' => 'editComments']);
-        $this->insert('auth_item', ['name' => 'deleteComments']);
-        $this->insert('auth_item', ['name' => 'viewComments']);
+        $this->delete('auth_item', ['name' => 'editComments']);
+        $this->delete('auth_item', ['name' => 'deleteComments']);
+        $this->delete('auth_item', ['name' => 'viewComments']);
 
         $this->delete('auth_item_child', ['parent' => 'moderator', 'child' => 'deleteComments']);
         $this->delete('auth_item_child', ['parent' => 'moderator', 'child' => 'editComments']);
