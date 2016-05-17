@@ -70,7 +70,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]
                 ],
                 'columns' => [
-                    ['class' => 'yii\grid\CheckboxColumn', 'options' => ['style' => 'width:10px']],
+                    ['class' => 'yeesoft\grid\CheckboxColumn', 'options' => ['style' => 'width:10px']],
                     [
                         'class' => 'yeesoft\grid\columns\TitleActionColumn',
                         'controller' => '/comment/default',

@@ -2,11 +2,11 @@
 
 use yeesoft\comments\models\Comment;
 use yeesoft\helpers\Html;
-use yii\widgets\ActiveForm;
+use yeesoft\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model yeesoft\comments\models\Comment */
-/* @var $form yii\widgets\ActiveForm */
+/* @var $form yeesoft\widgets\ActiveForm */
 ?>
 
 <div class="comment-form">
