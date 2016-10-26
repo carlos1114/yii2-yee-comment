@@ -23,7 +23,7 @@ class RecentComments extends DashboardWidget
     {
         $recentComments = Comment::find()
                 ->active()
-                ->orderBy(['id' => SORT_DESC])
+                ->orderBy(['created_at' => SORT_DESC])
                 ->limit($this->recentLimit)
                 ->all();
 
