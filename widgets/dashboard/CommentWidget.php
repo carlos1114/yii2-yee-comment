@@ -48,8 +48,6 @@ class CommentWidget extends DashboardWidget
     public function init()
     {
         parent::init();
-        $this->icon = FA::_COMMENTS;
-        $this->title = Yii::t('yee', 'Comments Activity');
         $this->visible = User::hasPermission('viewComments');
     }
 
@@ -87,11 +85,21 @@ class CommentWidget extends DashboardWidget
         $modelClass = $this->modelClass;
 
         return [
-                ['label' => Yii::t('yee', 'Approved'), 'filter' => ['status' => $modelClass::STATUS_APPROVED]],
-                ['label' => Yii::t('yee', 'Pending'), 'filter' => ['status' => $modelClass::STATUS_PENDING]],
-                ['label' => Yii::t('yee', 'Spam'), 'filter' => ['status' => $modelClass::STATUS_SPAM]],
-                ['label' => Yii::t('yee', 'Trash'), 'filter' => ['status' => $modelClass::STATUS_TRASH]],
+            ['label' => Yii::t('yee', 'Approved'), 'filter' => ['status' => $modelClass::STATUS_APPROVED]],
+            ['label' => Yii::t('yee', 'Pending'), 'filter' => ['status' => $modelClass::STATUS_PENDING]],
+            ['label' => Yii::t('yee', 'Spam'), 'filter' => ['status' => $modelClass::STATUS_SPAM]],
+            ['label' => Yii::t('yee', 'Trash'), 'filter' => ['status' => $modelClass::STATUS_TRASH]],
         ];
+    }
+
+    public function getIcon()
+    {
+        return FA::_COMMENTS;
+    }
+
+    public function getTitle()
+    {
+        return Yii::t('yee', 'Comments Activity');
     }
 
 }

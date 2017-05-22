@@ -2,11 +2,8 @@
 
 namespace yeesoft\comment\widgets;
 
-use yeesoft\comment\models\search\CommentSearch;
 use yeesoft\comments\models\Comment;
-use yeesoft\models\User;
 use yeesoft\widgets\DashboardWidget;
-use Yii;
 
 class RecentComments extends DashboardWidget
 {
