@@ -3,16 +3,16 @@
 namespace yeesoft\comment\controllers;
 
 use yeesoft\comments\models\Comment;
-use yeesoft\controllers\admin\BaseController;
+use yeesoft\controllers\CrudController;
 use Yii;
 
 /**
  * CommentController implements the CRUD actions for Post model.
  */
-class DefaultController extends BaseController
+class DefaultController extends CrudController
 {
     public $modelClass = 'yeesoft\comments\models\Comment';
-    public $modelSearchClass = 'yeesoft\comment\models\search\CommentSearch';
+    public $modelSearchClass = 'yeesoft\comment\models\CommentSearch';
     public $disabledActions = ['create', 'view'];
 
     protected function getRedirectPage($action, $model = null)

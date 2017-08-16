@@ -1,99 +1,65 @@
 <?php
 
-use yeesoft\comments\models\Comment;
 use yeesoft\helpers\Html;
 use yeesoft\widgets\ActiveForm;
+use yeesoft\comments\models\Comment;
 
 /* @var $this yii\web\View */
 /* @var $model yeesoft\comments\models\Comment */
 /* @var $form yeesoft\widgets\ActiveForm */
 ?>
 
-<div class="comment-form">
+<?php $form = ActiveForm::begin() ?>
 
-    <?php
-    $form = ActiveForm::begin([
-        'id' => 'comment-form',
-        'validateOnBlur' => false,
-    ])
-    ?>
+<div class="row">
+    <div class="col-md-9">
+        <div class="box box-primary">
+            <div class="box-body">
+                <?= $form->languageSwitcher($model); ?>
 
-    <div class="row">
-        <div class="col-md-9">
+                <?= $form->field($model, 'status')->dropDownList(Comment::getStatusList()) ?>
 
-            <div class="panel panel-default">
-                <div class="panel-body">
-
-                    <?= $form->field($model, 'status')->dropDownList(Comment::getStatusList()) ?>
-
-                    <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
-
-                </div>
-
+                <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
             </div>
         </div>
+    </div>
 
-        <div class="col-md-3">
+    <div class="col-md-3">
+        <div class="box box-primary">
+            <div class="box-body">
 
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="record-info">
+                <?= $form->field($model, 'author')->value() ?>
 
-                        <div class="form-group clearfix">
-                            <label class="control-label" style="float: left; padding-right: 5px;">
-                                <?= $model->attributeLabels()['username'] ?> :
-                            </label>
-                            <span><?= $model->author ?></span>
+                <?= $form->field($model, 'email')->value() ?>
+
+                <?= $form->field($model, 'model')->value() ?>
+
+                <?= $form->field($model, 'model_id')->value() ?>
+
+                <?= $form->field($model, 'parent_id')->value() ?>
+
+                <?php //= $form->field($model, 'createdDatetime')->value() ?>
+
+                <?php //= $form->field($model, 'updatedDatetime')->value() ?>
+
+                <?= $form->field($model, 'user_ip')->value() ?>
+
+                <div class="row">
+                    <?php if ($model->isNewRecord): ?>
+                        <div class="col-md-6">
+                            <?= Html::submitButton(Yii::t('yee', 'Create'), ['class' => 'btn btn-primary btn-block']) ?>
                         </div>
-
-                        <div class="form-group clearfix">
-                            <label class="control-label" style="float: left; padding-right: 5px;">
-                                <?= $model->attributeLabels()['email'] ?> :
-                            </label>
-                            <span><?= ($model->email) ? $model->email : Yii::t('yii', '(not set)') ?></span>
+                        <div class="col-md-6">
+                            <?= Html::a(Yii::t('yee', 'Cancel'), ['index'], ['class' => 'btn btn-default btn-block']) ?>
                         </div>
-
-                        <div class="form-group clearfix">
-                            <label class="control-label" style="float: left; padding-right: 5px;">
-                                <?= $model->attributeLabels()['model'] ?> :
-                            </label>
-                            <span><?= "$model->model->{$model->model_id}" ?></span>
+                    <?php else: ?>
+                        <div class="col-md-6">
+                            <?= Html::submitButton(Yii::t('yee', 'Save'), ['class' => 'btn btn-primary btn-block']) ?>
                         </div>
-
-                        <div class="form-group clearfix">
-                            <label class="control-label" style="float: left; padding-right: 5px;">
-                                <?= $model->attributeLabels()['parent_id'] ?> :
-                            </label>
-                            <span><?= $model->parent_id ?></span>
-                        </div>
-
-                        <div class="form-group clearfix">
-                            <label class="control-label" style="float: left; padding-right: 5px;">
-                                <?= $model->attributeLabels()['created_at'] ?> :
-                            </label>
-                            <span><?= $model->createdDate . ' ' . $model->createdTime ?></span>
-                        </div>
-
-                        <div class="form-group clearfix">
-                            <label class="control-label" style="float: left; padding-right: 5px;">
-                                <?= $model->attributeLabels()['updated_at'] ?> :
-                            </label>
-                            <span><?= $model->updatedDate . ' ' . $model->updatedTime ?></span>
-                        </div>
-
-                        <div class="form-group clearfix">
-                            <label class="control-label" style="float: left; padding-right: 5px;">
-                                <?= $model->attributeLabels()['user_ip'] ?> :
-                            </label>
-                            <span><?= $model->user_ip ?></span>
-                        </div>
-
-                        <div class="form-group">
-                            <?= Html::submitButton(Yii::t('yee', 'Save'), ['class' => 'btn btn-primary']) ?>
-
+                        <div class="col-md-6">
                             <?=
-                            Html::a(Yii::t('yee', 'Delete'), ['/comment/default/delete', 'id' => $model->id], [
-                                'class' => 'btn btn-default',
+                            Html::a(Yii::t('yee', 'Delete'), ['delete', 'id' => $model->id], [
+                                'class' => 'btn btn-default btn-block',
                                 'data' => [
                                     'confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
                                     'method' => 'post',
@@ -101,13 +67,11 @@ use yeesoft\widgets\ActiveForm;
                             ])
                             ?>
                         </div>
-                    </div>
+                    <?php endif; ?>
                 </div>
             </div>
-
         </div>
     </div>
-
-    <?php ActiveForm::end(); ?>
-
 </div>
+
+<?php ActiveForm::end(); ?>

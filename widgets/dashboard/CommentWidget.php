@@ -23,7 +23,7 @@ class CommentWidget extends DashboardWidget
     /**
      * @var string search model class name
      */
-    public $searchModelClass = 'yeesoft\comment\models\search\CommentSearch';
+    public $searchModelClass = 'yeesoft\comment\models\CommentSearch';
 
     /**
      * @var string index action

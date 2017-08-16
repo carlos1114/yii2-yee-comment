@@ -1,17 +1,18 @@
 <?php
 
-namespace yeesoft\comment\models\search;
+namespace yeesoft\comment\models;
 
-use yeesoft\comments\models\Comment;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
+use yeesoft\comments\models\Comment;
 
 /**
  * CommentSearch represents the model behind the search form about `yeesoft\comments\models\Comment`.
  */
 class CommentSearch extends Comment
 {
+
     public $created_at_operand;
 
     /**
@@ -23,6 +24,14 @@ class CommentSearch extends Comment
             [['id', 'model_id', 'user_id', 'parent_id', 'status', 'updated_at'], 'integer'],
             [['model', 'username', 'email', 'content', 'user_ip', 'created_at', 'created_at_operand'], 'safe'],
         ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function formName()
+    {
+        return '';
     }
 
     /**
@@ -92,11 +101,12 @@ class CommentSearch extends Comment
         }
 
         $query->andFilterWhere(['like', 'model', $this->model])
-            ->andFilterWhere(['like', 'username', $this->username])
-            ->andFilterWhere(['like', 'email', $this->email])
-            ->andFilterWhere(['like', 'content', $this->content])
-            ->andFilterWhere(['like', 'user_ip', $this->user_ip]);
+                ->andFilterWhere(['like', 'username', $this->username])
+                ->andFilterWhere(['like', 'email', $this->email])
+                ->andFilterWhere(['like', 'content', $this->content])
+                ->andFilterWhere(['like', 'user_ip', $this->user_ip]);
 
         return $dataProvider;
     }
+
 }
