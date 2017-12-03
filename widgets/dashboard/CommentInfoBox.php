@@ -19,7 +19,7 @@ class CommentInfoBox extends InfoBox
 
     public function getHasAccess()
     {
-        return User::hasPermission('viewComments');
+        return Yii::$app->user->can('view-comments');
     }
 
     public function getTitle()

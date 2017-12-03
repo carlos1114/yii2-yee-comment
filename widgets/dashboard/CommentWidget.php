@@ -48,7 +48,7 @@ class CommentWidget extends DashboardWidget
     public function init()
     {
         parent::init();
-        $this->visible = User::hasPermission('viewComments');
+        $this->visible = Yii::$app->user->can('view-comments');
     }
 
     public function renderContent()
