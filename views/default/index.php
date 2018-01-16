@@ -9,7 +9,7 @@ use yeesoft\comments\models\Comment;
 
 /* @var $this yii\web\View */
 /* @var $searchModel yeesoft\comments\models\CommentSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $dataProvider yeesoft\data\ActiveDataProvider */
 
 $this->title = Comments::t('comments', 'Comments');
 $this->params['description'] = 'YeeCMS 0.2.0';

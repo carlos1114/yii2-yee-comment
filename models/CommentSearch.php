@@ -4,7 +4,7 @@ namespace yeesoft\comment\models;
 
 use Yii;
 use yii\base\Model;
-use yii\data\ActiveDataProvider;
+use yeesoft\data\ActiveDataProvider;
 use yeesoft\comments\models\Comment;
 
 /**
